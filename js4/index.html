@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Tuoteharjoitukset</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    h2 {
+        color: darkblue;
+    }
+</style>
+</head>
+<body>
+
+<h1>Tuoteharjoitukset</h1>
+<div id="tulokset"></div>
+
+<script>
+const tuotteet = [
+    { nimi: "Maito", hinta: 1.29, kategoria: "juomat" },
+    { nimi: "Leipä", hinta: 2.50, kategoria: "ruoka" },
+    { nimi: "Juusto", hinta: 4.90, kategoria: "ruoka" },
+    { nimi: "Mehu", hinta: 2.20, kategoria: "juomat" },
+
+    // Omat tuotteet
+    { nimi: "Banaani", hinta: 0.60, kategoria: "hedelmät" },
+    { nimi: "Omena", hinta: 0.80, kategoria: "hedelmät" },
+    { nimi: "Jogurtti", hinta: 1.50, kategoria: "maitotuotteet" },
+    { nimi: "Kahvi", hinta: 5.50, kategoria: "juomat" }
+];
+
+const tulokset = document.getElementById("tulokset");
+
+// Tehtävä 1
+tulokset.innerHTML += `
+<h2>Tehtävä 1: Nimilista</h2>
+<p>${tuotteet.map(t => t.nimi).join(", ")}</p>
+`;
+
+// Tehtävä 2
+function edullisemmat(raja) {
+    return tuotteet.filter(t => t.hinta < raja);
+}
+
+tulokset.innerHTML += `
+<h2>Tehtävä 2: Hintasuodatin</h2>
+<p>${edullisemmat(3).map(t => t.nimi + " (" + t.hinta + " €)").join(", ")}</p>
+`;
+
+// Tehtävä 3
+const keskihinta =
+    tuotteet.reduce((summa, t) => summa + t.hinta, 0) /
+    tuotteet.length;
+
+tulokset.innerHTML += `
+<h2>Tehtävä 3: Keskihinta</h2>
+<p>${keskihinta.toFixed(2)} €</p>
+`;
+
+// Tehtävä 4
+const jarjestetyt = tuotteet.toSorted((a, b) => b.hinta - a.hinta);
+
+tulokset.innerHTML += `
+<h2>Tehtävä 4: Järjestys</h2>
+<p>${jarjestetyt.map(t => t.nimi + " (" + t.hinta + " €)").join(", ")}</p>
+`;
+
+// Tehtävä 5
+const kategoriat = Object.groupBy(tuotteet, t => t.kategoria);
+
+let kategoriatTeksti = "";
+for (let kategoria in kategoriat) {
+    kategoriatTeksti += `<li>${kategoria}: ${kategoriat[kategoria].length} tuotetta</li>`;
+}
+
+tulokset.innerHTML += `
+<h2>Tehtävä 5: Kategoriat</h2>
+<ul>${kategoriatTeksti}</ul>
+`;
+
+// Tehtävä 6
+const korotetut = tuotteet.map(t => ({
+    ...t,
+    hinta: (t.hinta * 1.10).toFixed(2)
+}));
+
+tulokset.innerHTML += `
+<h2>Tehtävä 6: Hinnankorotus</h2>
+<p>${korotetut.map(t => t.nimi + " (" + t.hinta + " €)").join(", ")}</p>
+`;
+</script>
+
+</body>
+</html>
