@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Osa 3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e3a8a;
+      color: #ffffff;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: #172554;
+      border: 1px solid #60a5fa;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+
+    .card h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #93c5fd;
+    }
+
+    .card p {
+      margin: 5px 0;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #ffffff;
+    }
+
+    .card .selitys {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(147, 197, 253, 0.3);
+      color: #dbeafe;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Osa 3 — Vastaukset ja selitykset</h1>
+
+    <div class="card" id="t1">
+      <h2>Tehtävä 1: Lämpötilamuunnin</h2>
+    </div>
+
+    <div class="card" id="t2">
+      <h2>Tehtävä 2: Arvosana</h2>
+    </div>
+
+    <div class="card" id="t3">
+      <h2>Tehtävä 3: Tervehdys oletusarvolla</h2>
+    </div>
+
+    <div class="card" id="t4">
+      <h2>Tehtävä 4: FizzBuzz</h2>
+    </div>
+
+    <div class="card" id="t5">
+      <h2>Tehtävä 5: Puuttuvat tiedot</h2>
+    </div>
+  </div>
+
+  <script>
+    const lisaaRivi = (id, teksti, onSelitys = false) => {
+      const p = document.createElement("p");
+      p.textContent = teksti;
+      if (onSelitys) {
+        p.classList.add("selitys");
+      }
+      document.getElementById(id).appendChild(p);
+    };
+
+    // Tehtävä 1: Lämpötilamuunnin
+    const celsiusFahrenheitiksi = (c) => c * 9 / 5 + 32;
+    [-20, 0, 25].forEach((c) => {
+      lisaaRivi("t1", `${c} °C = ${celsiusFahrenheitiksi(c)} °F`);
+    });
+    lisaaRivi(
+      "t1",
+      "Selitys: Nuolifunktio laskee Fahrenheit-asteet kaavalla c * 9 / 5 + 32 ja palauttaa tuloksen.",
+      true
+    );
+
+    // Tehtävä 2: Arvosana (0-5)
+    function arvosana(pisteet) {
+      if (pisteet < 50) return 0;
+      if (pisteet < 60) return 1;
+      if (pisteet < 70) return 2;
+      if (pisteet < 80) return 3;
+      if (pisteet < 90) return 4;
+      return 5;
+    }
+    [0, 35, 52, 65, 74, 85, 95].forEach((p) => {
+      lisaaRivi("t2", `${p} pistettä -> arvosana ${arvosana(p)}`);
+    });
+    lisaaRivi(
+      "t2",
+      "Selitys: if / else if -ehdot tarkistavat pistemäärän ja palauttavat arvosanan väliltä 0–5 (alle 50 = 0, 50–59 = 1, 60–69 = 2, 70–79 = 3, 80–89 = 4, 90+ = 5).",
+      true
+    );
+
+    // Tehtävä 3: Tervehdys oletusarvolla
+    function tervehdi(nimi, kieli = "fi") {
+      if (kieli === "en") return `Hello, ${nimi}!`;
+      if (kieli === "sv") return `Hej, ${nimi}!`;
+      return `Hei, ${nimi}!`;
+    }
+    lisaaRivi("t3", `Oletuskieli (fi): ${tervehdi("Aino")}`);
+    lisaaRivi("t3", `Englanti (en): ${tervehdi("Aino", "en")}`);
+    lisaaRivi("t3", `Ruotsi (sv): ${tervehdi("Aino", "sv")}`);
+    lisaaRivi(
+      "t3",
+      'Selitys: Parametrilla kieli = "fi" on oletusarvo. Jos kieliparametria ei anneta, käytetään suomea ("Hei, Aino!").',
+      true
+    );
+
+    // Tehtävä 4: FizzBuzz (1-30)
+    const fizzBuzz = [];
+    for (let i = 1; i <= 30; i++) {
+      if (i % 3 === 0 && i % 5 === 0) fizzBuzz.push("FizzBuzz");
+      else if (i % 3 === 0) fizzBuzz.push("Fizz");
+      else if (i % 5 === 0) fizzBuzz.push("Buzz");
+      else fizzBuzz.push(i);
+    }
+    lisaaRivi("t4", fizzBuzz.join(", "));
+    lisaaRivi(
+      "t4",
+      "Selitys: for-silmukka käy luvut 1–30. Jakojäännös (%) kertoo jaollisuuden: 3 ja 5 -> FizzBuzz, vain 3 -> Fizz, vain 5 -> Buzz, muuten itse luku.",
+      true
+    );
+
+    // Tehtävä 5: Puuttuvat tiedot
+    const asetukset = { teema: null, fonttikoko: 0 };
+    const teema = asetukset.teema ?? "vaalea";
+    const fonttikoko = asetukset.fonttikoko ?? 16;
+    const fonttikokoOr = asetukset.fonttikoko || 16;
+
+    lisaaRivi("t5", `Teema (asetukset.teema ?? "vaalea"): ${teema}`);
+    lisaaRivi("t5", `Fonttikoko (asetukset.fonttikoko ?? 16): ${fonttikoko}`);
+    lisaaRivi("t5", `Fonttikoko vertailu (asetukset.fonttikoko || 16): ${fonttikokoOr}`);
+    lisaaRivi(
+      "t5",
+      "Selitys: ?? korvaa vain null- ja undefined-arvot, joten teema saa arvon 'vaalea' ja fonttikoko pysyy nollana (0). || korvaa myös falsy-arvot kuten 0, minkä vuoksi se antaa 16.",
+      true
+    );
+  </script>
+</body>
+</html>
