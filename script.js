@@ -1,63 +1,39 @@
-// Tehtävä 1: Lämpötilamuunnin
-const celsiusFahrenheitiksi = c => c * 9 / 5 + 32;
+// tehtävä 1
+let etunimi = "Aino";
+let ika = 21;
+let kaupunki = "Oulu";
 
-console.log(celsiusFahrenheitiksi(-20)); // -4
-console.log(celsiusFahrenheitiksi(0));   // 32
-console.log(celsiusFahrenheitiksi(25));  // 77
+console.log(`Olen ${etunimi}, ${ika} vuotta, ${kaupunki}sta.`);
 
+// tehtävä 2
+const tuote1 = 2.50;
+const tuote2 = 5.90;
+const tuote3 = 4.00;
 
-// Tehtävä 2: Arvosana
-function arvosana(pisteet) {
-    if (pisteet < 50) return 0;
-    if (pisteet < 60) return 1;
-    if (pisteet < 70) return 2;
-    if (pisteet < 80) return 3;
-    if (pisteet < 90) return 4;
-    return 5;
-}
+const yhteensa = tuote1 + tuote2 + tuote3;
 
-console.log(arvosana(45));
-console.log(arvosana(65));
-console.log(arvosana(85));
-console.log(arvosana(95));
+console.log(`Yhteensä: ${yhteensa.toFixed(2)} €`);
 
+ // tehtävä 3
+let laskuri = 0;
 
-// Tehtävä 3: Tervehdys oletusarvolla
-function tervehdi(nimi, kieli = "fi") {
-    if (kieli === "fi") return `Hei ${nimi}!`;
-    if (kieli === "en") return `Hello ${nimi}!`;
-    if (kieli === "sv") return `Hej ${nimi}!`;
+laskuri++;
+console.log(laskuri);
 
-    return `Hei ${nimi}!`;
-}
+laskuri++;
+console.log(laskuri);
 
-console.log(tervehdi("Maija"));
-console.log(tervehdi("John", "en"));
-console.log(tervehdi("Anna", "sv"));
+laskuri++;
+console.log(laskuri);
 
 
-// Tehtävä 4: FizzBuzz
-for (let i = 1; i <= 30; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-        console.log("FizzBuzz");
-    } else if (i % 3 === 0) {
-        console.log("Fizz");
-    } else if (i % 5 === 0) {
-        console.log("Buzz");
-    } else {
-        console.log(i);
-    }
-}
+// tehtävä 4
+console.log(typeof "Hei");
+console.log(typeof 123);
+console.log(typeof true);
+console.log(typeof null);
+console.log(typeof undefined);
 
-
-// Tehtävä 5: Puuttuvat tiedot
-const asetukset = {
-    teema: null,
-    fonttikoko: 0
-};
-
-console.log(asetukset.teema ?? "vaalea");
-console.log(asetukset.fonttikoko ?? 16);
-
-console.log(asetukset.teema || "vaalea");
-console.log(asetukset.fonttikoko || 16);
+console.log("5" * 2);
+console.log("5" + 2);
+console.log(Number("abc"));
